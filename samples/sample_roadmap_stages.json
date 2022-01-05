@@ -1,0 +1,64 @@
+{
+    "stages" : [
+        { 
+            "id" : "stage-0",
+            "subtitle" : "Stage 0",
+            "headline" : "Refold Philosophy",
+            "intro" : "Before you embark on your language learning journey, you need to prepare. This section gives you a tour of the method, mindset, and tools that you’ll be using throughout the journey.",
+            "details" : {
+                "overview" : {
+                    "id" : "stage-0-overview",
+                    "title" : "Start Here"
+                },
+                "article-sections" : [
+                    { 
+                        "id" : "a",
+                        "title" : "Method",
+                        "articles" : [
+                            { 
+                                "id" : "1",
+                                "title" : "Language Acquisition"
+                            },
+                            { 
+                                "id" : "2",
+                                "title" : "Roadmap Overview"
+                            }
+                        ]
+                    },
+                    {
+                        "id" : "b",
+                        "title" : "Mindset",
+                        "articles" : [
+                            { 
+                                "id" : "1",
+                                "title" : "Enjoy The Language"
+                            },
+                            { 
+                                "id" : "2",
+                                "title" : "Tolerate Ambiguity"
+                            } 
+                        ]
+                    },
+                    {
+                        "id" : "c",
+                        "title" : "Core Activities",
+                        "articles" : [
+                            { 
+                                "id" : "1",
+                                "title" : "Active Immersion"
+                            },
+                            { 
+                                "id" : "2",
+                                "title" : "Passive Immersion"
+                            },
+                            { 
+                                "id" : "3",
+                                "title" : "Active Study"
+                            }  
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
