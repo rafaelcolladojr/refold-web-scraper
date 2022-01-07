@@ -1,6 +1,9 @@
 import 'package:universal_html/controller.dart';
 import 'package:universal_html/html.dart';
 
+import 'models/article_model.dart';
+import 'models/article_section_model.dart';
+
 void main(List<String> arguments) async {
   const roadmapUrl = 'https://refold.la/roadmap';
   final controller = WindowController();
@@ -32,20 +35,64 @@ void main(List<String> arguments) async {
   DivElement stageDetailsDivElement =
       firstStageDivElement.children[3] as DivElement;
 
+  //a (list to overview article)
   AnchorElement titleAnchorElement =
-      stageDetailsDivElement.children.first as AnchorElement;
-  HeadingElement titleH3Element =
-      titleAnchorElement.children.first.children[1] as HeadingElement;
+      stageDetailsDivElement.firstChild as AnchorElement;
+  Article overviewArticle =
+      anchorToOverview(titleAnchorElement, 'stage0-overview');
 
-  print(titleH3Element.innerText);
-
-  List<Element> stageArticlesDivList = stageDetailsDivElement.children;
-  getArticlesList(stageArticlesDivList);
+  print(overviewArticle.id + " " + overviewArticle.title);
 }
 
-void getArticlesList(List<Element> articleDivList) {
-  for (Element articleDivElement in articleDivList) {
-    HeadingElement articleListTitle =
-        articleDivElement.children.first as HeadingElement;
+// SECTION
+ArticleSection divToArticleSection(DivElement divElement, String stageId) {
+  String sectionId = stageId;
+  String sectionTitle = '';
+  List<Article> articles = List<Article>.empty();
+
+  HeadingElement titleHeadingElement = divElement.firstChild as HeadingElement;
+  sectionId = sectionId + '-' + titleHeadingElement.innerText;
+
+  for (Element anchorElement in divElement.children[1].children) {
+    articles.add(anchorToArticle(anchorElement as AnchorElement, sectionId));
   }
+
+  return ArticleSection(id: sectionId, title: sectionTitle, articles: articles);
+}
+
+// SECTION OVERVIEW
+Article anchorToOverview(AnchorElement anchorElement, String sectionId) {
+  String overviewId = sectionId;
+  String overviewTitle = '';
+
+  DivElement childDiv = anchorElement.firstChild as DivElement;
+  HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
+  overviewTitle = titleHeadingElement.innerText;
+
+  //TODO: call scraper on overview artcle (details)
+
+  return Article(
+    id: overviewId,
+    title: overviewTitle,
+  );
+}
+
+// ARTICLE
+Article anchorToArticle(AnchorElement anchorElement, String sectionId) {
+  String articleId = sectionId;
+  String articleTitle = '';
+
+  DivElement childDiv = anchorElement.firstChild as DivElement;
+  HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
+  HeadingElement idHeadingElement = childDiv.children[2] as HeadingElement;
+
+  articleId = articleId + "-" + idHeadingElement.innerText;
+  articleTitle = titleHeadingElement.innerText;
+
+  //TODO: call scraper on each article (details)
+
+  return Article(
+    id: articleId,
+    title: articleTitle,
+  );
 }
