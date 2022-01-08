@@ -35,16 +35,45 @@ void main(List<String> arguments) async {
   DivElement stageDetailsDivElement =
       firstStageDivElement.children[3] as DivElement;
 
-  //a (list to overview article)
-  AnchorElement titleAnchorElement =
-      stageDetailsDivElement.firstChild as AnchorElement;
-  Article overviewArticle =
-      anchorToOverview(titleAnchorElement, 'stage0-overview');
+  for (int i = 0; i < stageDetailsDivElement.children.length; i++) {
+    if (i == 0) {
+      //a (list to overview article)
+      AnchorElement titleAnchorElement =
+          stageDetailsDivElement.children[i] as AnchorElement;
+      Article overviewArticle = anchorToOverview(titleAnchorElement, 'stage0');
+      print(overviewArticle.id + " " + overviewArticle.title);
 
-  print(overviewArticle.id + " " + overviewArticle.title);
+      // div (article section)
+    } else {
+      DivElement articleSectionDivElement =
+          stageDetailsDivElement.children[i] as DivElement;
+      ArticleSection articleSection =
+          divToArticleSection(articleSectionDivElement, 'stage-0');
+
+      print(articleSection.title);
+      articleSection.articles.map(print);
+    }
+  }
 }
 
-// SECTION
+// SECTION OVERVIEW
+Article anchorToOverview(AnchorElement anchorElement, String sectionId) {
+  String overviewId = sectionId + '-overview';
+  String overviewTitle = '';
+
+  DivElement childDiv = anchorElement.firstChild as DivElement;
+  HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
+  overviewTitle = titleHeadingElement.innerText;
+
+  //TODO: call scraper on overview artcle (details)
+
+  return Article(
+    id: overviewId,
+    title: overviewTitle,
+  );
+}
+
+// Article SECTION
 ArticleSection divToArticleSection(DivElement divElement, String stageId) {
   String sectionId = stageId;
   String sectionTitle = '';
@@ -60,31 +89,14 @@ ArticleSection divToArticleSection(DivElement divElement, String stageId) {
   return ArticleSection(id: sectionId, title: sectionTitle, articles: articles);
 }
 
-// SECTION OVERVIEW
-Article anchorToOverview(AnchorElement anchorElement, String sectionId) {
-  String overviewId = sectionId;
-  String overviewTitle = '';
-
-  DivElement childDiv = anchorElement.firstChild as DivElement;
-  HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
-  overviewTitle = titleHeadingElement.innerText;
-
-  //TODO: call scraper on overview artcle (details)
-
-  return Article(
-    id: overviewId,
-    title: overviewTitle,
-  );
-}
-
 // ARTICLE
 Article anchorToArticle(AnchorElement anchorElement, String sectionId) {
   String articleId = sectionId;
   String articleTitle = '';
 
   DivElement childDiv = anchorElement.firstChild as DivElement;
-  HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
-  HeadingElement idHeadingElement = childDiv.children[2] as HeadingElement;
+  HeadingElement titleHeadingElement = childDiv.children[0] as HeadingElement;
+  HeadingElement idHeadingElement = childDiv.children[1] as HeadingElement;
 
   articleId = articleId + "-" + idHeadingElement.innerText;
   articleTitle = titleHeadingElement.innerText;
