@@ -30,4 +30,9 @@ class Stage {
         "intro": intro,
         "details": details.toJson(),
       };
+
+  @override
+  String toString() {
+    return '$subtitle: $headline\n$intro\n$details';
+  }
 }

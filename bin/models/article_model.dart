@@ -12,8 +12,15 @@ class Article {
         title: json["title"],
       );
 
+  factory Article.empty() => Article(id: '', title: 'Empty');
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
       };
+
+  @override
+  String toString() {
+    return 'id: $id, title: $title';
+  }
 }

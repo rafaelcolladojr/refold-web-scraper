@@ -21,4 +21,13 @@ class StageDetails {
         "article-sections":
             List<dynamic>.from(articleSections.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    String value = '$overview';
+    for (var element in articleSections) {
+      value += '\n$element';
+    }
+    return value;
+  }
 }

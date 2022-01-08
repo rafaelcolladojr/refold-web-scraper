@@ -23,4 +23,13 @@ class ArticleSection {
         "title": title,
         "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    String value = '$title';
+    for (var element in articles) {
+      value += '\n$element';
+    }
+    return value;
+  }
 }

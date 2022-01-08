@@ -3,6 +3,8 @@ import 'package:universal_html/html.dart';
 
 import 'models/article_model.dart';
 import 'models/article_section_model.dart';
+import 'models/stage_details_model.dart';
+import 'models/stage_model.dart';
 
 void main(List<String> arguments) async {
   const roadmapUrl = 'https://refold.la/roadmap';
@@ -13,53 +15,69 @@ void main(List<String> arguments) async {
           .querySelectorAll('div[class^="stage-module--content"') ??
       [];
 
-  //// Accessing Roadmap Info
-  //
-  //// Stages List
-  //
-  // for (DivElement divElement in stagesDivElements) {
-  //   HeadingElement h4 = divElement.children[0] as HeadingElement;
-  //   HeadingElement h2 = divElement.children[1] as HeadingElement;
-  //   ParagraphElement p = divElement.children[2] as ParagraphElement;
-  //   DivElement div = divElement.children[3] as DivElement;
-  //   print(h4.innerText);
-  //   print(h2.innerText);
-  //   print(p.innerText);
-  //   print('\n');
-  // }
+  // Accessing Roadmap Info
 
-  // Accessing Stage Details
-  DivElement firstStageDivElement = stagesDivElements[0];
+  // Stages List
 
-  //div.stage-module--openedContent
-  DivElement stageDetailsDivElement =
-      firstStageDivElement.children[3] as DivElement;
-
-  for (int i = 0; i < stageDetailsDivElement.children.length; i++) {
-    if (i == 0) {
-      //a (list to overview article)
-      AnchorElement titleAnchorElement =
-          stageDetailsDivElement.children[i] as AnchorElement;
-      Article overviewArticle = anchorToOverview(titleAnchorElement, 'stage0');
-      print(overviewArticle.id + " " + overviewArticle.title);
-
-      // div (article section)
-    } else {
-      DivElement articleSectionDivElement =
-          stageDetailsDivElement.children[i] as DivElement;
-      ArticleSection articleSection =
-          divToArticleSection(articleSectionDivElement, 'stage-0');
-
-      print(articleSection.title);
-      articleSection.articles.map(print);
-    }
+  for (DivElement divElement in stagesDivElements) {
+    Stage stage = divToStage(divElement, 'detail-en');
+    print(stage);
   }
 }
 
+Stage divToStage(DivElement divElement, String roadmapId) {
+  // Stage Info
+  String subtitle = divElement.children[0].innerText;
+  String headline = divElement.children[1].innerText;
+  String intro = divElement.children[2].innerText;
+  DivElement stageDetailsDivElement = divElement.children[3] as DivElement;
+  String stageId =
+      roadmapId + '-stage' + subtitle.split(' ')[1]; // ex. "Stage 0" return "0"
+
+  // Stage Details
+  StageDetails stageDetails =
+      divToStageDetails(stageDetailsDivElement, stageId);
+
+  return Stage(
+    id: stageId,
+    subtitle: subtitle,
+    headline: headline,
+    intro: intro,
+    details: stageDetails,
+  );
+}
+
+StageDetails divToStageDetails(DivElement divElement, String stageId) {
+  Article? overviewArticle;
+  List<ArticleSection> articleSections =
+      List<ArticleSection>.empty(growable: true);
+  for (int i = 0; i < divElement.children.length; i++) {
+    // Overview Article
+    if (i == 0) {
+      AnchorElement titleAnchorElement =
+          divElement.children[i] as AnchorElement;
+      overviewArticle = anchorToOverview(titleAnchorElement, stageId);
+
+      // Article Sections
+    } else {
+      DivElement articleSectionDivElement =
+          divElement.children[i] as DivElement;
+      articleSections.add(
+        divToArticleSection(articleSectionDivElement, stageId),
+      );
+    }
+  }
+  return StageDetails(
+    overview: overviewArticle ?? Article.empty(),
+    articleSections: articleSections,
+  );
+}
+
 // SECTION OVERVIEW
-Article anchorToOverview(AnchorElement anchorElement, String sectionId) {
-  String overviewId = sectionId + '-overview';
+Article anchorToOverview(AnchorElement anchorElement, String stageId) {
+  String overviewId = stageId + '-overview';
   String overviewTitle = '';
+  String relativeUrl = anchorElement.href ?? '';
 
   DivElement childDiv = anchorElement.firstChild as DivElement;
   HeadingElement titleHeadingElement = childDiv.children[1] as HeadingElement;
@@ -75,12 +93,11 @@ Article anchorToOverview(AnchorElement anchorElement, String sectionId) {
 
 // Article SECTION
 ArticleSection divToArticleSection(DivElement divElement, String stageId) {
-  String sectionId = stageId;
-  String sectionTitle = '';
-  List<Article> articles = List<Article>.empty();
+  List<Article> articles = List<Article>.empty(growable: true);
 
   HeadingElement titleHeadingElement = divElement.firstChild as HeadingElement;
-  sectionId = sectionId + '-' + titleHeadingElement.innerText;
+  String sectionTitle = titleHeadingElement.innerText.substring(3);
+  String sectionId = stageId;
 
   for (Element anchorElement in divElement.children[1].children) {
     articles.add(anchorToArticle(anchorElement as AnchorElement, sectionId));
@@ -93,6 +110,7 @@ ArticleSection divToArticleSection(DivElement divElement, String stageId) {
 Article anchorToArticle(AnchorElement anchorElement, String sectionId) {
   String articleId = sectionId;
   String articleTitle = '';
+  String relativeUrl = anchorElement.href ?? '';
 
   DivElement childDiv = anchorElement.firstChild as DivElement;
   HeadingElement titleHeadingElement = childDiv.children[0] as HeadingElement;
