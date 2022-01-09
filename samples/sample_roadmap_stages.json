@@ -1,4 +1,6 @@
 {
+    "type" : "detailed",
+    "lang" : "en",
     "stages" : [
         { 
             "id" : "stage-0",
