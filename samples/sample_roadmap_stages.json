@@ -1,65 +1,310 @@
 {
-    "type" : "detailed",
-    "lang" : "en",
-    "stages" : [
-        { 
-            "id" : "stage-0",
-            "subtitle" : "Stage 0",
-            "headline" : "Refold Philosophy",
-            "intro" : "Before you embark on your language learning journey, you need to prepare. This section gives you a tour of the method, mindset, and tools that you’ll be using throughout the journey.",
-            "details" : {
-                "overview" : {
-                    "id" : "stage-0-overview",
-                    "title" : "Start Here"
+    "type": "roadmap",
+    "lang": "en",
+    "stages": [
+        {
+            "id": "roadmap_stage-0",
+            "subtitle": "Stage 0",
+            "headline": "Refold Philosophy",
+            "intro": "Before you embark on your language learning journey, you need to prepare. This section gives you a tour of the method, mindset, and tools that you’ll be using throughout the journey.",
+            "details": {
+                "overview": {
+                    "id": "roadmap_stage-0-overview",
+                    "title": "Start Here"
                 },
-                "article-sections" : [
-                    { 
-                        "id" : "a",
-                        "title" : "Method",
-                        "articles" : [
-                            { 
-                                "id" : "1",
-                                "title" : "Language Acquisition"
+                "article-sections": [
+                    {
+                        "id": "roadmap_stage-0",
+                        "title": "Method",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-0_language-acquisition",
+                                "title": "Language Acquisition"
                             },
-                            { 
-                                "id" : "2",
-                                "title" : "Roadmap Overview"
+                            {
+                                "id": "roadmap_stage-0_roadmap-overview",
+                                "title": "Roadmap Overview"
                             }
                         ]
                     },
                     {
-                        "id" : "b",
-                        "title" : "Mindset",
-                        "articles" : [
-                            { 
-                                "id" : "1",
-                                "title" : "Enjoy The Language"
+                        "id": "roadmap_stage-0",
+                        "title": "Mindset",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-0_enjoy-the-language",
+                                "title": "Enjoy the Language"
                             },
-                            { 
-                                "id" : "2",
-                                "title" : "Tolerate Ambiguity"
-                            } 
+                            {
+                                "id": "roadmap_stage-0_tolerate-the-ambiguity",
+                                "title": "Tolerate the Ambiguity"
+                            }
                         ]
                     },
                     {
-                        "id" : "c",
-                        "title" : "Core Activities",
-                        "articles" : [
-                            { 
-                                "id" : "1",
-                                "title" : "Active Immersion"
+                        "id": "roadmap_stage-0",
+                        "title": "Core Activities",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-0_active-immersion",
+                                "title": "Active Immersion"
                             },
-                            { 
-                                "id" : "2",
-                                "title" : "Passive Immersion"
+                            {
+                                "id": "roadmap_stage-0_passive-listening",
+                                "title": "Passive Listening"
                             },
-                            { 
-                                "id" : "3",
-                                "title" : "Active Study"
-                            }  
+                            {
+                                "id": "roadmap_stage-0_active-study",
+                                "title": "Active Study"
+                            }
                         ]
                     }
                 ]
+            }
+        },
+        {
+            "id": "roadmap_stage-1",
+            "subtitle": "Stage 1",
+            "headline": "Lay the Foundation",
+            "intro": "Establish the skills, tools, and habits for immersion learning and jumpstart your comprehension by studying the basic grammar and vocabulary of your target language.",
+            "details": {
+                "overview": {
+                    "id": "roadmap_stage-1-overview",
+                    "title": "Stage 1 Overview"
+                },
+                "article-sections": [
+                    {
+                        "id": "roadmap_stage-1",
+                        "title": "Setting Up Tools and Habits",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-1_active-immersion",
+                                "title": "Active Immersion"
+                            },
+                            {
+                                "id": "roadmap_stage-1_passive-listening",
+                                "title": "Passive Listening"
+                            },
+                            {
+                                "id": "roadmap_stage-1_anki-setup",
+                                "title": "Anki Setup"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-1",
+                        "title": "Learning the Building Blocks",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-1_phonetics",
+                                "title": "Phonetics"
+                            },
+                            {
+                                "id": "roadmap_stage-1_writing-system",
+                                "title": "Writing System"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-1",
+                        "title": "Jumpstarting Your Comprehension",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-1_grammar",
+                                "title": "Grammar"
+                            },
+                            {
+                                "id": "roadmap_stage-1_srs-best-practices",
+                                "title": "SRS Best Practices"
+                            },
+                            {
+                                "id": "roadmap_stage-1_vocabulary",
+                                "title": "Vocabulary"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "roadmap_stage-2",
+            "subtitle": "Stage 2",
+            "headline": "Build Comprehension",
+            "intro": "Learn directly from immersion until you fully understand.",
+            "details": {
+                "overview": {
+                    "id": "roadmap_stage-2-overview",
+                    "title": "Stage 2 Overview"
+                },
+                "article-sections": [
+                    {
+                        "id": "roadmap_stage-2",
+                        "title": "Overcoming the Curve",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-2_domains",
+                                "title": "Domains"
+                            },
+                            {
+                                "id": "roadmap_stage-2_comp.-factors",
+                                "title": "Comp. Factors"
+                            },
+                            {
+                                "id": "roadmap_stage-2_comp.-index",
+                                "title": "Comp. Index"
+                            },
+                            {
+                                "id": "roadmap_stage-2_levels-of-comp.",
+                                "title": "Levels of Comp."
+                            },
+                            {
+                                "id": "roadmap_stage-2_types-of-active-immersion",
+                                "title": "Types of Active Immersion"
+                            },
+                            {
+                                "id": "roadmap_stage-2_immersion-guide",
+                                "title": "Immersion Guide"
+                            },
+                            {
+                                "id": "roadmap_stage-2_basic-sentence-mining",
+                                "title": "Basic Sentence Mining"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-2",
+                        "title": "Increasing Difficulty",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-2_immersion-guide",
+                                "title": "Immersion Guide"
+                            },
+                            {
+                                "id": "roadmap_stage-2_advanced-sentence-mining",
+                                "title": "Advanced Sentence Mining"
+                            },
+                            {
+                                "id": "roadmap_stage-2_casual-mono-lingual-transition",
+                                "title": "Casual Mono-Lingual Transition"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-2",
+                        "title": "Mastering a Domain",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-2_immersion-guide",
+                                "title": "Immersion Guide"
+                            },
+                            {
+                                "id": "roadmap_stage-2_pure-listening",
+                                "title": "Pure Listening"
+                            },
+                            {
+                                "id": "roadmap_stage-2_how-to-read-a-novel",
+                                "title": "How to Read a Novel"
+                            },
+                            {
+                                "id": "roadmap_stage-2_structured-mono-lingual-transition",
+                                "title": "Structured Mono-Lingual Transition"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "roadmap_stage-3",
+            "subtitle": "Stage 3",
+            "headline": "Learn to Speak",
+            "intro": "Convert your acquired language into speaking ability.",
+            "details": {
+                "overview": {
+                    "id": "roadmap_stage-3-overview",
+                    "title": "Stage 3 Overview"
+                },
+                "article-sections": [
+                    {
+                        "id": "roadmap_stage-3",
+                        "title": "Preparing for Output",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-3_starting-output",
+                                "title": "Starting Output"
+                            },
+                            {
+                                "id": "roadmap_stage-3_activity-guide",
+                                "title": "Activity Guide"
+                            },
+                            {
+                                "id": "roadmap_stage-3_adopt-a-parent",
+                                "title": "Adopt a Parent"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-3",
+                        "title": "Learning to Write",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-3_language-activation",
+                                "title": "Language Activation"
+                            },
+                            {
+                                "id": "roadmap_stage-3_output-q&a",
+                                "title": "Output Q&A"
+                            },
+                            {
+                                "id": "roadmap_stage-3_pronunc.-training",
+                                "title": "Pronunc. Training"
+                            },
+                            {
+                                "id": "roadmap_stage-3_activity-guide",
+                                "title": "Activity Guide"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "roadmap_stage-3",
+                        "title": "Learning to Speak",
+                        "articles": [
+                            {
+                                "id": "roadmap_stage-3_competence-vs-performance",
+                                "title": "Competence Vs Performance"
+                            },
+                            {
+                                "id": "roadmap_stage-3_speaking-competence",
+                                "title": "Speaking Competence"
+                            },
+                            {
+                                "id": "roadmap_stage-3_speaking-practice",
+                                "title": "Speaking Practice"
+                            },
+                            {
+                                "id": "roadmap_stage-3_speaking-q&a",
+                                "title": "Speaking Q&A"
+                            },
+                            {
+                                "id": "roadmap_stage-3_activity-guide",
+                                "title": "Activity Guide"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "roadmap_stage-4",
+            "subtitle": "Stage 4",
+            "headline": "Coming Soon",
+            "intro": "",
+            "details": {
+                "overview": {
+                    "id": "",
+                    "title": "Empty"
+                },
+                "article-sections": []
             }
         }
     ]

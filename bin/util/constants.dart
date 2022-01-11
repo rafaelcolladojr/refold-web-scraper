@@ -1,1 +1,1 @@
-const String baseUrl = 'https://refold.la/';
+const String baseUrl = 'https://refold.la';

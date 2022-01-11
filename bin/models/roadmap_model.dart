@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'article_model.dart';
+import 'article_section_model.dart';
 import 'stage_model.dart';
 
 String roadmapToJson(Roadmap data) => json.encode(data.toJson());
@@ -26,4 +28,16 @@ class Roadmap {
         "lang": lang,
         "stages": List<dynamic>.from(stages.map((x) => x.toJson())),
       };
+
+  List<Article> getAllArticles() {
+    List<Article> articles = List.empty(growable: true);
+    for (Stage stage in stages) {
+      Article overview = stage.details.overview;
+      articles.add(overview);
+      for (ArticleSection section in stage.details.articleSections) {
+        articles.addAll(section.articles);
+      }
+    }
+    return articles;
+  }
 }
