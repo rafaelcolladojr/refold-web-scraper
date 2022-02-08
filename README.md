@@ -11,3 +11,15 @@ This application is intended to facilitate the retrieval and sanitation of [refo
 </br>
 
 </div>
+
+## Todo List
+
+- [x] Retrieve Roadmaps of all types and languages
+- [x] Master json doc for Roadmap disabling
+- [ ] Retrieve Quickstart guidesf
+- [ ] Automatic roadmap list parsing / retrieval
+
+## Tech Used
+
+- [universal_html(scraping)](https://pub.dev/packages/universal_html)
+- [dart:convert(json encoding)](https://api.flutter.dev/flutter/dart-convert/dart-convert-library.html)
