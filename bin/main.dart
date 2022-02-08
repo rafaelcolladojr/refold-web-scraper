@@ -8,11 +8,11 @@ import 'util/roadmap_type.dart';
 
 void main(List<String> arguments) async {
   RoadmapParser roadmapParser = RoadmapParser();
-  stdout.write('Fetching Roadmap info...');
+  print('Fetching Roadmap info...');
   Roadmap roadmap = await roadmapParser.parseRoadmap(RoadmapType.detailed);
   print('done');
 
-  stdout.write('Writing Roadmap info to JSON...');
+  print('Writing Roadmap info to JSON...');
   writeRoadmap(roadmap);
   print('done');
 }

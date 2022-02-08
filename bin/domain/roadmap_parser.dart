@@ -1,6 +1,3 @@
-import 'dart:io' as io;
-import 'dart:convert';
-
 import 'package:universal_html/controller.dart';
 import 'package:universal_html/html.dart';
 
@@ -24,16 +21,12 @@ class RoadmapParser {
   late WindowController windowController;
   late ArticleParser articleParser;
 
-  Future<Roadmap> parseRoadmap(RoadmapType type,
-      [RoadmapLanguage language = RoadmapLanguage.en]) async {
-    String roadmapUrl =
-        '$baseUrl/${type == RoadmapType.detailed ? "roadmap" : "simplified"}';
+  Future<Roadmap> parseRoadmap(RoadmapType type, [RoadmapLanguage language = RoadmapLanguage.en]) async {
+    String roadmapUrl = '$baseUrl/${type == RoadmapType.detailed ? "roadmap" : "simplified"}';
 
     await windowController.openUri(Uri.parse(roadmapUrl));
 
-    final stagesDivElements = windowController.window?.document
-            .querySelectorAll('div[class^="stage-module--content"') ??
-        [];
+    final stagesDivElements = windowController.window?.document.querySelectorAll('div[class^="stage-module--content"') ?? [];
 
     Roadmap roadmap = await _divsToRoadmap(stagesDivElements, type, language);
 
@@ -74,13 +67,10 @@ class RoadmapParser {
     String headline = divElement.children[1].innerText;
     String intro = divElement.children[2].innerText;
     DivElement stageDetailsDivElement = divElement.children[3] as DivElement;
-    String stageId = roadmapId +
-        '_stage-' +
-        subtitle.split(' ')[1]; // ex. "Stage 0" return "0"
+    String stageId = roadmapId + '_stage-' + subtitle.split(' ')[1]; // ex. "Stage 0" return "0"
 
     // Stage Details
-    StageDetails stageDetails =
-        await _divToStageDetails(stageDetailsDivElement, stageId);
+    StageDetails stageDetails = await _divToStageDetails(stageDetailsDivElement, stageId);
 
     return Stage(
       id: stageId,
@@ -101,14 +91,12 @@ class RoadmapParser {
     for (int i = 0; i < divElement.children.length; i++) {
       // Overview Article
       if (i == 0) {
-        AnchorElement titleAnchorElement =
-            divElement.children[i] as AnchorElement;
+        AnchorElement titleAnchorElement = divElement.children[i] as AnchorElement;
         overviewArticle = await _anchorToOverview(titleAnchorElement, stageId);
 
         // Article Sections
       } else {
-        DivElement articleSectionDivElement =
-            divElement.children[i] as DivElement;
+        DivElement articleSectionDivElement = divElement.children[i] as DivElement;
         articleSections.add(
           await _divToArticleSection(articleSectionDivElement, stageId),
         );
@@ -129,11 +117,14 @@ class RoadmapParser {
     String overviewId = stageId + '_overview';
 
     // Get overview body info from new page
-    ArticleDetails articleDetails =
-        await articleParser.parseArticleBody(overviewId);
+    ArticleDetails articleDetails = await articleParser.parseArticleBody(overviewId);
+
+    HeadingElement overviewThumbTitleH3 = anchorElement.firstChild!.childNodes[1] as HeadingElement;
+    String thumbTitle = overviewThumbTitleH3.innerText;
 
     return Article(
       id: overviewId,
+      thumbTitle: thumbTitle,
       title: articleDetails.title,
       body: articleDetails.body,
     );
@@ -147,20 +138,17 @@ class RoadmapParser {
     List<Article> articles = <Article>[];
 
     // Section Title
-    HeadingElement titleHeadingElement =
-        divElement.firstChild as HeadingElement;
+    HeadingElement titleHeadingElement = divElement.firstChild as HeadingElement;
     String sectionTitle = titleHeadingElement.innerText.substring(3);
 
     // Section Id (None)
     String sectionId = stageId;
 
     for (Element anchorElement in divElement.children[1].children) {
-      articles.add(
-          await _anchorToArticle(anchorElement as AnchorElement, sectionId));
+      articles.add(await _anchorToArticle(anchorElement as AnchorElement, sectionId));
     }
 
-    return ArticleSection(
-        id: sectionId, title: sectionTitle, articles: articles);
+    return ArticleSection(id: sectionId, title: sectionTitle, articles: articles);
   }
 
   // ARTICLE
@@ -170,17 +158,20 @@ class RoadmapParser {
   ) async {
     String articleId = anchorElement.href?.replaceAll('/', '_') ?? '';
 
+    // Article Thumbnail Title
+    HeadingElement thumbnailTitleH4 = anchorElement.firstChild!.firstChild as HeadingElement;
+    String thumbnailTitle = thumbnailTitleH4.innerText;
+
     //Find third instance of underscore in id, keep beyond.
-    int thirdUnderscoreIndex = articleId.indexOf(
-        '_', articleId.indexOf('_', articleId.indexOf('_') + 1) + 1);
+    int thirdUnderscoreIndex = articleId.indexOf('_', articleId.indexOf('_', articleId.indexOf('_') + 1) + 1);
     articleId = articleId.substring(thirdUnderscoreIndex + 1);
 
     // Get overview body info from new page
-    ArticleDetails articleDetails =
-        await articleParser.parseArticleBody(articleId);
+    ArticleDetails articleDetails = await articleParser.parseArticleBody(articleId);
 
     return Article(
       id: articleId,
+      thumbTitle: thumbnailTitle,
       title: articleDetails.title,
       body: articleDetails.body,
     );
