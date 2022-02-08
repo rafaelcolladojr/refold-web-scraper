@@ -4,4 +4,4 @@ extension ParseToString on RoadmapLanguage {
   }
 }
 
-enum RoadmapLanguage { en }
+enum RoadmapLanguage { en, es, jp, ko }

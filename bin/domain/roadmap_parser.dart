@@ -22,7 +22,7 @@ class RoadmapParser {
   late ArticleParser articleParser;
 
   Future<Roadmap> parseRoadmap(RoadmapType type, [RoadmapLanguage language = RoadmapLanguage.en]) async {
-    String roadmapUrl = '$baseUrl/${type == RoadmapType.detailed ? "roadmap" : "simplified"}';
+    String roadmapUrl = '$baseUrl/${language == RoadmapLanguage.en ? "" : language.toShortString() + "/"}${type == RoadmapType.detailed ? "roadmap" : "simplified"}';
 
     await windowController.openUri(Uri.parse(roadmapUrl));
 
