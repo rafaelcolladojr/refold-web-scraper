@@ -21,5 +21,5 @@ This application is intended to facilitate the retrieval and sanitation of [refo
 
 ## Tech Used
 
-- [universal_html(scraping)](https://pub.dev/packages/universal_html)
-- [dart:convert(json encoding)](https://api.flutter.dev/flutter/dart-convert/dart-convert-library.html)
+- [universal_html (scraping)](https://pub.dev/packages/universal_html)
+- [dart:convert (json encoding)](https://api.flutter.dev/flutter/dart-convert/dart-convert-library.html)
