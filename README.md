@@ -16,7 +16,7 @@ This application is intended to facilitate the retrieval and sanitation of [refo
 
 - [x] Retrieve Roadmaps of all types and languages
 - [x] Master json doc for Roadmap disabling
-- [ ] Retrieve Quickstart guidesf
+- [ ] Retrieve Quickstart guides
 - [ ] Automatic roadmap list parsing / retrieval
 
 ## Tech Used
